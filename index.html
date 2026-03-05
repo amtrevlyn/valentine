@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Rini Sayang</title>
+    <style>
+        :root {
+            --pink-primary: #ff4d6d;
+            --pink-soft: #ff8fa3;
+            --cream: #fff0f3;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--cream);
+            color: #590d22;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            padding: 25px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.2);
+            position: relative;
+            z-index: 10;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .active {
+            display: block;
+        }
+
+        h1 { font-size: 24px; color: var(--pink-primary); margin-bottom: 10px; }
+        p { font-size: 17px; line-height: 1.5; margin-bottom: 20px; }
+
+        .btn {
+            background-color: var(--pink-primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+        }
+
+        .btn:hover { transform: scale(1.05); background-color: #c9184a; }
+
+        img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border: 3px solid var(--pink-soft);
+        }
+
+        /* Tombol Jahil */
+        #btn-not-yet {
+            position: fixed;
+            transition: 0.2s;
+            z-index: 999;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Hiasan Hati Melayang */
+        .heart-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            font-size: 20px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" src="starla.mp3" loop></audio>
+
+    <div class="container">
+        
+        <div id="page1" class="page active">
+            <h1>Halo Vanila... 🍓</h1>
+            <p>Eh, maksudnya <b>Rini</b>. <br> Aku punya sesuatu buat kamu di hari kasih sayang ini. <br> Mau lihat?</p>
+            <button class="btn" onclick="nextPage(2); playMusic()">Buka Pesan ❤️</button>
+        </div>
+
+        <div id="page2" class="page">
+            <img src="foto1.jpg" alt="Foto 1">
+            <p>Happy Valentine's Day, Rini!</p>
+            <p>Tiap kali liat foto ini, aku selalu mikir... kok bisa ya ada orang selucu kamu?</p>
+            <button class="btn" onclick="nextPage(3)">Lanjut ❤️</button>
+        </div>
+
+        <div id="page3" class="page">
+            <img src="foto2.jpg" alt="Foto 2">
+            <p>Terima kasih ya sudah hadir dan bikin hari-hariku jadi lebih berwarna.</p>
+            <button class="btn" onclick="nextPage(4)">Next...</button>
+        </div>
+
+        <div id="page4" class="page">
+            <img src="foto3.jpg" alt="Foto 3">
+            <p>Kamu itu kayak Vanila, manisnya pas dan selalu bikin kangen! 🍦</p>
+            <button class="btn" onclick="nextPage(5)">Masih ada lagi...</button>
+        </div>
+
+        <div id="page5" class="page">
+            <img src="foto4.jpg" alt="Foto 4">
+            <p>Bahkan hal-hal kecil yang kita lakuin bareng itu berkesan banget buat aku.</p>
+            <button class="btn" onclick="nextPage(6)">Terus?</button>
+        </div>
+
+        <div id="page6" class="page">
+            <img src="foto5.jpg" alt="Foto 5">
+            <p>Aku suka cara kamu ketawa, cara kamu cerita... pokoknya semua tentang kamu.</p>
+            <button class="btn" onclick="nextPage(7)">Satu lagi...</button>
+        </div>
+
+        <div id="page7" class="page">
+            <img src="foto6.jpg" alt="Foto 6">
+            <p>Intinya, aku nggak mau kehilangan momen-momen kayak gini sama kamu.</p>
+            <button class="btn" onclick="nextPage(8)">Klik buat intinya...</button>
+        </div>
+
+        <div id="page8" class="page">
+            <h1>Rini Sayang...</h1>
+            <p>I don't want to just be your friend anymore. <br> <b>Will you be my girlfriend?</b></p>
+            
+            <div style="margin-top: 30px; display: flex; justify-content: center; gap: 10px;">
+                <button class="btn" onclick="finalPage()">YES! ❤️</button>
+                <button class="btn" onclick="finalPage()">Of Course! ✨</button>
+                <button id="btn-not-yet" class="btn" onmouseover="moveButton()">Not Yet 😜</button>
+            </div>
+        </div>
+
+        <div id="finalPage" class="page">
+            <h1>YEEEYYY! RESMI YA! 🎉</h1>
+            <p>Makasih ya Rini! I'm the luckiest person! <br> I promise to make you happy. ❤️</p>
+            <p>I love you, my Vanila!</p>
+            <div style="font-size: 50px;">🥰🌹💍</div>
+        </div>
+
+    </div>
+
+    <script>
+        function playMusic() {
+            var audio = document.getElementById("bgMusic");
+            audio.play().catch(function(error) {
+                console.log("Autoplay dicegah browser, perlu klik lagi.");
+            });
+        }
+
+        function nextPage(pageNumber) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page' + pageNumber).classList.add('active');
+        }
+
+        function finalPage() {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('finalPage').classList.add('active');
+            // Stop tombol not yet biar ga lari lagi
+            document.getElementById('btn-not-yet').style.display = 'none';
+        }
+
+        function moveButton() {
+            const btn = document.getElementById('btn-not-yet');
+            // Menghindari tombol keluar dari area pandang
+            const x = Math.random() * (window.innerWidth - btn.clientWidth - 40);
+            const y = Math.random() * (window.innerHeight - btn.clientHeight - 40);
+            
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+    </script>
+</body>
+</html>
